@@ -1,0 +1,55 @@
+---
+- name: recursively remove /var/www/html directory
+  become: true
+  ansible.builtin.file:
+   path: /var/www/html
+   state: absent
+
+# - name: install certificate
+#   become: true
+#   ansible.builtin.apt:
+#    name: "{{ item }}"
+#    state: present
+#   loop: [ 'ca-certificates', 'apt-transport-https', 'software-properties-common' ]
+
+# - apt_repository:
+#    repo: ppa:ondrej/php
+#    state: present
+
+- name: install apache
+  become: true
+  ansible.builtin.apt:
+   name: "{{ item }}"
+   state: present
+  loop: [ 'apache2', 'php', 'libapache2-mod-php', 'php7.4-fpm', 'libapache2-mod-fcgid', 'php-mysql' ]
+
+# - name: enable php-fcgi
+#   become: true
+#   command: a2enmod proxy_fcgi setenvif
+
+# - name: enable php7.4-fpm
+#   become: true
+#   command: a2enconf php8.0-fpm
+
+- name: clone a repo
+  become: true
+  ansible.builtin.git:
+   repo: https://github.com/TheCountt/tooling.git
+   dest: /var/www/html
+   force: yes
+
+- name: copy html content to one level up
+  become: true
+  command: cp -r /var/www/html/html/ /var/www/
+
+- name: Start service apache2, if not started
+  become: true
+  ansible.builtin.service:
+   name: apache2
+   state: started
+
+- name: recursively remove /var/www/html/html/ directory
+  become: true
+  ansible.builtin.file:
+   path: /var/www/html/html
+   state: absent

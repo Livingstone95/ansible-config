@@ -1,0 +1,47 @@
+- name: add PostgreSQL repo to the repo list
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list.d/pgdg.list
+    line: deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main
+    create: yes
+
+- name: Download PostgreSQL software key
+  ansible.builtin.apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state: present
+
+- name: install postgresql
+  ansible.builtin.apt:
+    pkg:
+    - postgresql
+    - postgresql-contrib
+    state: present
+
+- name: start and enable postgresql
+  ansible.builtin.service:
+    name: postgresql
+    state: started
+    enabled: yes
+     
+
+- name: create password for user postgres
+  ansible.builtin.user:
+    name: postgres
+    group: postgres
+    password: postgres
+
+- name: Create a new database sonarqubedb
+  become_user: postgres
+  community.postgresql.postgresql_db:
+    name: sonarqube
+    encoding: UTF-8
+
+   
+
+- name: Create user sonarqube
+  become_user: postgres
+  community.postgresql.postgresql_user:
+    db: sonarqube
+    name: sonar
+    password: sonar
+    priv: "ALL"
+   
