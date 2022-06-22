@@ -46,7 +46,7 @@ source ~/.bash_profile
 =====================================
 - curl -sS https://getcomposer.org/installer | php 
 - sudo mv composer.phar /usr/bin/composer
-
+vvv
 ##### Verify Composer is installed or not
 - composer --version
 
