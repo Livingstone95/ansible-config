@@ -17,6 +17,30 @@
         }
       }
     }
+   
+     stage('Package') {
+      steps {
+        script {
+          sh 'echo "Packaging app"'
+        }
+      }
     }
+
+     stage('Deploy') {
+      steps {
+        script {
+          sh 'echo "Deploying Stage"'
+        }
+      }
+    }
+
+     stage('Checkout') {
+      steps {
+        script {
+          sh 'echo "Checkout"'
+        }
+      }
+    } 
+}
 }
 
