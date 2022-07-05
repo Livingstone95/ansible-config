@@ -60,6 +60,30 @@
       }
     }
 
+    stage('Package') {
+      steps {
+        script {
+          sh 'echo "Packaging stage"'
+        }
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        script {
+          sh 'echo "Deployment"'
+        }
+      }
+    }
+
+    stage('Cleanup') {
+      steps {
+        script {
+          sh 'echo "clean up"'
+        }
+      }
+    }
+
     stage('Test') {
       steps {
         script {
