@@ -70,32 +70,4 @@
   }
   
 
-    // stage('Package') {
-    //   steps {
-    //     script {
-    //       sh 'echo "Packaging App" '
-    //     }
-    //   }
-    // }
-
-    stage('Deploy') {
-      steps {
-        script {
-          sh 'echo "Deploying"'
-        }
-      }
-    }
-
-    stage('Initial cleanup') {
-      steps {
-        dir("${WORKSPACE}") {
-          deleteDir()
-        }
-      }
-    }
-
-    stage('Clean Workspace after buid') {
-      steps{
-        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
-      }
-    }
+    
