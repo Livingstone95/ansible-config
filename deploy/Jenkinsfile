@@ -70,13 +70,13 @@
   }
   
 
-    stage('Package') {
-      steps {
-        script {
-          sh 'echo "Packaging App" '
-        }
-      }
-    }
+    // stage('Package') {
+    //   steps {
+    //     script {
+    //       sh 'echo "Packaging App" '
+    //     }
+    //   }
+    // }
 
     stage('Deploy') {
       steps {
