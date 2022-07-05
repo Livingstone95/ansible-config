@@ -76,29 +76,7 @@ pipeline {
       }
     }
 
-  stage('Deploy') {
-    steps {
-        script {
-            sh 'echo "Deploying"'
-        }
-      }
-    }
-
-  stage("Initial cleanup") {
-    steps {
-        dir("${WORKSPACE}") {
-              deleteDir()
-            }
-          }
-        }
-
-
-  stage('Clean Workspace after build'){
-        steps{
-          cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
-        }
-      }
-     }
+  
 
   
 
