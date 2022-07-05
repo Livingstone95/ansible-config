@@ -68,13 +68,13 @@
       }
     }
 
-    // stage('Deploy') {
-    //   steps {
-    //     script {
-    //       sh 'echo "Deployment"'
-    //     }
-    //   }
-    // }
+    stage('Deploy') {
+      steps {
+        script {
+          sh 'echo "Deployment"'
+        }
+      }
+    }
 
     stage('Cleanup') {
       steps {
