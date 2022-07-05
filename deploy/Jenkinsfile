@@ -47,7 +47,7 @@
 // }
 
 
-pipeline {
+  pipeline {
     agent any
 
   stages {
@@ -67,15 +67,7 @@ pipeline {
       }
     }
     }
-
-    stage('Package') {
-      steps {
-        script {
-            sh 'echo "Packaging App" '
-        }
-      }
-    }
-
+}
   
 
   
