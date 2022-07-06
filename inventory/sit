@@ -1,0 +1,15 @@
+[tooling]
+<SIT-Tooling-Web-Server-Private-IP-Address>
+
+[todo]
+172.31.95.217 ansible_ssh_user='ec2-user'
+
+[nginx]
+172.31.89.68 ansible_ssh_user='ec2-user'
+
+[db:vars]
+ansible_user=ec2-user
+ansible_python_interpreter=/usr/bin/python
+
+[db]
+172.31.90.254 ansible_ssh_user='ubuntu'
