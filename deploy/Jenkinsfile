@@ -1,5 +1,9 @@
- pipeline {
-    agent any
+pipeline {
+  agent any
+
+  environment {
+    ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+  }
 
   stages {
     stage("Initial cleanup") {
@@ -9,39 +13,30 @@
         }
       }
     }
-    stage('Build') {
-      steps {
-        script {
-          sh 'echo "Building Stage"'
-        }
+
+    stage('Checkout SCM') {
+      steps{
+        git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/Revelation69/ansible-config.git'
       }
     }
 
-    stage('Test') {
+    stage('Prepare Ansible For Execution') {
       steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
+        sh 'echo ${WORKSPACE}'
+        sh 'sed -i "3 a roles_path=${WORKSPACE}/roles"  ${WORKSPACE}/deploy/ansible.cfg'
       }
     }
-    stage('Package'){
-      steps { 
-        script {
-          sh 'echo "Packaging App" '
-        }
-      }
-    }
-    stage('Deploy'){
+
+    stage('Run Ansible playbook') {
       steps {
-        script {
-          sh 'echo "Deploying to Dev" '
-        }
+        ansiblePlaybook become: true, colorized: true, credentialsId: 'Private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev', playbook: 'playbook/site.yml'
       }
     }
-    stage("clean Up") {
-      steps {
-        cleanWs()
+
+    stage('Clean workspace after build') {
+      steps{
+        cleanWs{cleanWhenAborted: true, cleanwhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true,}
       }
     }
-    }
+  }
 }
