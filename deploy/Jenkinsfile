@@ -16,7 +16,7 @@ pipeline {
 
       stage('Checkout SCM') {
          steps{
-            git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/Taiwolawal/ansible-config.git'
+            git branch: 'feature/jenkinspipeline-stages', url: 'https://github.com/Revelation69/ansible-config.git'
          }
        }
 
