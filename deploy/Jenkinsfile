@@ -1,4 +1,4 @@
-pipeline {
+/* pipeline {
   agent any
 
   environment {
@@ -20,7 +20,7 @@ pipeline {
 
       stage('Checkout SCM') {
          steps{
-            git branch: 'main', url: 'https://github.com/Livingstone95/ansible-config.git'
+            git branch: 'main', url: 'https://github.com/Tonybesto/ansible-config.git'
          }
        }
 
@@ -44,5 +44,21 @@ pipeline {
       }
    }
 
-}
+} */
 
+
+
+
+pipeline {
+    agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
+        }
+      }
+    }
+    }
+}
