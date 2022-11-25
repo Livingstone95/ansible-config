@@ -1,9 +1,11 @@
+[db]
+10.138.0.17 ansible_ssh_user='nbomasi'
+
 [nginx]
 10.182.0.10 ansible_ssh_user='nbomasi'
 
 
-[db]
-10.182.0.10 ansible_ssh_user='nbomasi'
+
 
 # [todo]
 # 172.31.6.147 ansible_ssh_user='ec2-user'
