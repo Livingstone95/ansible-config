@@ -119,17 +119,17 @@ mysql_databases:
     replicate: 1
 
 # Users.
-mysql_users:
-  - name: webaccess
-    host: 0.0.0.0
-    password: secret
-    priv: '*.*:ALL,GRANT'
+# mysql_users:
+#   - name: webaccess
+#     host: 0.0.0.0
+#     password: secret
+#     priv: '*.*:ALL,GRANT'
 
-mysql_users:
-  - name: homestead
-    host: 172.31.1.134
-    password: sePret^i
-    priv: '*.*:ALL,GRANT'
+# mysql_users:
+#   - name: homestead
+#     host: 172.31.1.134
+#     password: sePret^i
+#     priv: '*.*:ALL,GRANT'
 
 # Replication settings (replication is only enabled if master/user have values).
 mysql_server_id: "1"
