@@ -1,48 +1,47 @@
-   pipeline {
-    agent any
+pipeline {
+  agent any
 
-  stages {
-    stage("Initial cleanup") {
-          steps {
-            dir("${WORKSPACE}") {
-              deleteDir()
-            }
-          }
-        }
-    stage('Build') {  
-      steps {
-        script {
-          sh 'echo "Building Stage"'
-        }
-        }
-       }
-
-    stage('Test') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
-       }
-      }
-  
-    stage('package'){
-      steps {
-        script {
-            sh 'echo "packaging App"  '
-         }
-        }
-      }
-    stage('Deploy'){
-      steps {
-         script {
-          sh 'echo "Deploying to Dev"'
-        }
-       }
-     }
-    stage ('cleanup'){
-      steps {
-        cleanWs()
-      }
+  parameters {
+      string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
     }
+
+   environment {
+      ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+      }
+   stages {
+        stage ("initial cleanup") {
+            steps {
+                dir("${WORKSPACE}") {
+                deleteDir()
+                }
+                }
+            }
+        stage('Checkout SCM') {
+            steps{
+                git branch: 'feature/Jenkkins-pipeline', url: 'https://github.com/Ohiani/ansible-config.git'
+                   }
+            }
+        stage('Prepare Ansible For Execution') {
+            steps {
+                sh 'echo ${WORKSPACE}' 
+                sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'  
+                }
+            }
+
+        stage('Run Ansible playbook') {
+          steps {
+              ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'
+                  }
+            }
+            
+        
+   
+   
+   
+   
+   
+   
+   
+   
    }
- }
+}
