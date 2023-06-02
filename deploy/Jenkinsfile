@@ -49,12 +49,12 @@ pipeline {
         }
       }
 
-    stage('Trigger') {
-      steps {
-        script {
-          sh 'echo "Trigger Stage"'
-        }
-      }
-    }
+    // stage('Trigger') {
+    //   steps {
+    //     script {
+    //       sh 'echo "Trigger Stage"'
+    //     }
+    //   }
+    // }
     }
 }
