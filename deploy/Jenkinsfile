@@ -48,5 +48,13 @@ pipeline {
           cleanWs()
         }
       }
+
+    stage('Trigger') {
+      steps {
+        script {
+          sh 'echo "Trigger Stage"'
+        }
+      }
+    }
     }
 }
