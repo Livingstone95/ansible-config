@@ -33,16 +33,18 @@ pipeline {
       }
     }
 
-    stage('Deploy')
+    stage('Deploy') {
       steps {
         script {
           sh 'echo "Deploying to Dev"'
         }
       }
+    }  
 
-    stage("clean up")            
+    stage("clean up") {            
       steps {
         cleanWs()
        }
+    }   
   }
 }    
