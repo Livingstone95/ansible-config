@@ -1,7 +1,9 @@
 ---
 - hosts: db
-- name: database assignment
-  ansible.builtin.import_playbook: ../static-assignments/database.yml
+  tasks:
+    - name: database assignment
+      import_playbook: ../static-assignments/database.yml
+
 
 - hosts: nginx
 - name: nginx assignment
