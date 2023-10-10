@@ -29,7 +29,7 @@ pipeline {
 
       stage('Run Ansible playbook') {
         steps {
-           ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '/home/ec2-user/ansible-config/inventory/dev', playbook: '/home/ec2-user/ansible-config/playbooks/site.yml'
+           ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev', playbook: 'playbooks/site.yml'
       }
 
       stage('Clean Workspace after build'){
