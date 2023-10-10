@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-      ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+      ANSIBLE_CONFIG="${WORKSPACE}/deploy2/ansible2.fg"
     }
 
   stages{
@@ -23,7 +23,7 @@ pipeline {
       stage('Prepare Ansible For Execution') {
         steps {
           sh 'echo ${WORKSPACE}' 
-          sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'  
+          sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy2/ansible2.cfg'  
         }
      }
 
