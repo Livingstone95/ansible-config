@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-      ANSIBLE_CONFIG="${WORKSPACE}/deploy2/ansible2.fg"
+      ANSIBLE_CONFIG="${WORKSPACE}/deploy2/ansible2.cfg"
     }
 
   stages{
