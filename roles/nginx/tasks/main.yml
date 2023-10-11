@@ -1,19 +1,19 @@
 ---
 # tasks file for nginx
 - name: install nginx on the webserver
-  apt:
-    name: nginx
-    state: present
+  ansible.builti.yum:
+      name: nginx
+      state: present
 
 
 - name: ensure nginx is started and enabled
   ansible.builtin.service:
-    name: nginx
-    state: started 
-    enabled: yes
+     name: nginx
+     state: started 
+     enabled: yes
 
 - name: install PHP
-  apt:
+  ansible.builtin.yum:
     name:
       - php 
       - php-mysqlnd
