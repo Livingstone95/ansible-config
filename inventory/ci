@@ -4,7 +4,7 @@
 [nginx]
 <Nginx-Private-IP-Address>
 
-[sonarqube]
+[sonar]
 172.31.30.171 ansible_ssh_user='ubuntu'
 
 [artifactory]
