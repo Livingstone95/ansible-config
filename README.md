@@ -31,7 +31,7 @@ source ~/.bash_profile
 - yum module enable php:remi-7.4 -y
 - yum install -y php  php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd    php-fpm php-json
 - systemctl start php-fpm
-- systemctl start php-fpm
+- systemctl enable php-fpm
 
 
 #### Ansible dependencies to install
